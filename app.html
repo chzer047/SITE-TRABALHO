@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Webing | Demo</title>
+  <meta name="description" content="Demonstração da plataforma Webing: login, perfil, match por I.A. e agendamento automático de entrevista.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b4cf0'/%3E%3Cpath d='M7 10l4 12 5-9 5 9 4-12' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<section class="screen screen-center" id="s-login">
+  <div class="auth">
+    <div class="auth-side">
+      <a href="index.html" class="logo logo-light"><span class="logo-mark">W</span><span>Webing</span></a>
+      <h1>Conectamos pessoas, não só currículos.</h1>
+      <p>Crie seu perfil, deixe a I.A. encontrar a empresa certa e receba a entrevista já agendada.</p>
+      <ul>
+        <li>Match por skills, interesses e personalidade</li>
+        <li>Entrevista marcada automaticamente</li>
+        <li>Rede social de talentos de Santa Catarina</li>
+      </ul>
+    </div>
+    <form class="auth-form" id="form-login" novalidate>
+      <span class="demo-tag">Modo demonstração</span>
+      <h2>Entrar na Webing</h2>
+      <p class="muted">Use qualquer e-mail e senha, é só uma demo.</p>
+      <label class="field">
+        <span>E-mail</span>
+        <input type="email" name="email" placeholder="voce@email.com" autocomplete="username">
+      </label>
+      <label class="field">
+        <span>Senha</span>
+        <input type="password" name="senha" placeholder="••••••••" autocomplete="current-password">
+      </label>
+      <p class="form-error" id="login-error" role="alert"></p>
+      <button type="submit" class="btn btn-block">Entrar</button>
+      <button type="button" class="btn btn-ghost btn-block" id="btn-demo">Entrar com conta demo</button>
+      <a href="index.html" class="back-link">← Voltar para o site</a>
+    </form>
+  </div>
+</section>
+
+<!-- ============ ONBOARDING ============ -->
+<section class="screen screen-center" id="s-onboard" hidden>
+  <form class="wizard" id="form-perfil" novalidate>
+    <div class="wizard-head">
+      <a class="logo"><span class="logo-mark">W</span><span>Webing</span></a>
+      <span class="muted" id="wiz-count">Passo 1 de 4</span>
+    </div>
+    <div class="progress"><i id="wiz-bar"></i></div>
+
+    <!-- Passo 1 -->
+    <fieldset class="step" data-step="1">
+      <legend>Sobre você</legend>
+      <p class="muted">Conte um pouco quem você é.</p>
+      <div class="row-2">
+        <label class="field"><span>Nome completo *</span><input name="nome" required placeholder="Seu nome"></label>
+        <label class="field"><span>Idade *</span><input name="idade" type="number" min="16" max="70" required placeholder="22"></label>
+      </div>
+      <div class="row-2">
+        <label class="field"><span>Cidade *</span>
+          <select name="cidade" required>
+            <option value="">Selecione</option>
+            <option>Florianópolis</option><option>São José</option><option>Palhoça</option>
+            <option>Joinville</option><option>Blumenau</option><option>Itajaí</option>
+            <option>Balneário Camboriú</option><option>Criciúma</option><option>Chapecó</option>
+            <option>Lages</option><option>Outra cidade de SC</option>
+          </select>
+        </label>
+        <label class="field"><span>Situação atual *</span>
+          <select name="ocupacao" required>
+            <option value="">Selecione</option>
+            <option>Estudante</option><option>Recém-formado(a)</option>
+            <option>Jovem profissional</option><option>Em transição de carreira</option>
+          </select>
+        </label>
+      </div>
+      <label class="field"><span>Curso ou área de formação</span><input name="curso" placeholder="Ex.: Administração, Publicidade, ADS…"></label>
+    </fieldset>
+
+    <!-- Passo 2 -->
+    <fieldset class="step" data-step="2" hidden>
+      <legend>Suas skills</legend>
+      <p class="muted">Escolha pelo menos 3 no total. A I.A. usa isso para comparar com as vagas.</p>
+      <h4>Habilidades técnicas</h4>
+      <div class="chips-select" data-name="hard"></div>
+      <h4>Habilidades comportamentais</h4>
+      <div class="chips-select" data-name="soft"></div>
+    </fieldset>
+
+    <!-- Passo 3 -->
+    <fieldset class="step" data-step="3" hidden>
+      <legend>Interesses e hobbies</legend>
+      <p class="muted">Aqui a Webing vai além do currículo.</p>
+      <h4>Áreas que te interessam *</h4>
+      <div class="chips-select" data-name="interesses"></div>
+      <h4>Hobbies</h4>
+      <div class="chips-select" data-name="hobbies"></div>
+    </fieldset>
+
+    <!-- Passo 4 -->
+    <fieldset class="step" data-step="4" hidden>
+      <legend>Objetivos e personalidade</legend>
+      <p class="muted">Para a I.A. entender o que você busca e onde vai se sentir bem.</p>
+      <div class="row-2">
+        <label class="field"><span>Seu objetivo agora *</span>
+          <select name="objetivo" required>
+            <option value="">Selecione</option>
+            <option>Estágio</option><option>Primeiro emprego</option>
+            <option>Crescer na carreira</option><option>Mudar de área</option>
+          </select>
+        </label>
+        <label class="field"><span>Modelo de trabalho *</span>
+          <select name="modelo" required>
+            <option value="">Selecione</option>
+            <option>Presencial</option><option>Híbrido</option><option>Remoto</option>
+          </select>
+        </label>
+      </div>
+      <h4>Como você se descreve? *</h4>
+      <div class="radio-cards" data-name="perfil">
+        <label><input type="radio" name="perfil" value="Comunicativo" required><span>🗣️<b>Comunicativo</b><small>Gosto de pessoas e de conversar</small></span></label>
+        <label><input type="radio" name="perfil" value="Analítico"><span>📊<b>Analítico</b><small>Gosto de dados e de resolver problemas</small></span></label>
+        <label><input type="radio" name="perfil" value="Criativo"><span>🎨<b>Criativo</b><small>Gosto de criar e de ter ideias</small></span></label>
+        <label><input type="radio" name="perfil" value="Organizado"><span>🗂️<b>Organizado</b><small>Gosto de planejar e de processos</small></span></label>
+      </div>
+      <h4>Ambiente ideal *</h4>
+      <div class="radio-cards small" data-name="ambiente">
+        <label><input type="radio" name="ambiente" value="Dinâmico" required><span><b>Dinâmico</b><small>Ritmo de startup</small></span></label>
+        <label><input type="radio" name="ambiente" value="Estruturado"><span><b>Estruturado</b><small>Processos claros</small></span></label>
+        <label><input type="radio" name="ambiente" value="Colaborativo"><span><b>Colaborativo</b><small>Tudo em equipe</small></span></label>
+        <label><input type="radio" name="ambiente" value="Autônomo"><span><b>Autônomo</b><small>Liberdade para fazer</small></span></label>
+      </div>
+      <label class="field"><span>Uma frase sobre você</span><textarea name="bio" rows="2" maxlength="160" placeholder="Ex.: Apaixonada por contar histórias e conectar pessoas."></textarea></label>
+    </fieldset>
+
+    <p class="form-error" id="wiz-error" role="alert"></p>
+    <div class="wizard-actions">
+      <button type="button" class="btn btn-ghost" id="wiz-back" hidden>Voltar</button>
+      <button type="submit" class="btn" id="wiz-next">Continuar</button>
+    </div>
+  </form>
+</section>
+
+<!-- ============ ANALISANDO ============ -->
+<section class="screen screen-center screen-dark" id="s-analyze" hidden>
+  <div class="analyze">
+    <div class="orb"><span class="logo-mark big">W</span></div>
+    <h2>A I.A. da Webing está analisando seu perfil</h2>
+    <ul class="analyze-steps" id="analyze-steps">
+      <li>Lendo suas skills técnicas e comportamentais</li>
+      <li>Entendendo seus interesses e hobbies</li>
+      <li>Mapeando objetivos e personalidade</li>
+      <li>Comparando com empresas de Santa Catarina</li>
+      <li>Encontrando o melhor match</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ MATCH ============ -->
+<section class="screen screen-center screen-dark" id="s-match" hidden>
+  <div class="match">
+    <p class="confetti" aria-hidden="true">🎉</p>
+    <h2>Deu match!</h2>
+    <div class="match-pair">
+      <div class="avatar xl" id="m-user"></div>
+      <div class="match-pct" id="m-pct">0%</div>
+      <div class="avatar xl co" id="m-co"></div>
+    </div>
+    <p class="match-sub" id="m-sub"></p>
+    <div class="match-why">
+      <h4>Por que vocês combinam</h4>
+      <ul id="m-reasons"></ul>
+    </div>
+    <div class="scheduling" id="m-scheduling">
+      <span class="spinner"></span> Agendando sua entrevista automaticamente…
+    </div>
+    <div class="interview-card" id="m-interview" hidden></div>
+    <button class="btn btn-light btn-block" id="btn-go-app" hidden>Ir para minha rede →</button>
+  </div>
+</section>
+
+<!-- ============ REDE SOCIAL ============ -->
+<section class="screen" id="s-app" hidden>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="logo" data-view="feed"><span class="logo-mark">W</span><span class="hide-sm">Webing</span></a>
+      <div class="search hide-sm"><input placeholder="Buscar pessoas, empresas e vagas" aria-label="Buscar"></div>
+      <nav class="topnav" aria-label="Navegação principal">
+        <button data-view="feed" class="active"><span>🏠</span><small>Início</small></button>
+        <button data-view="vagas"><span>💼</span><small>Vagas</small></button>
+        <button data-view="agenda"><span>📅</span><small>Agenda</small></button>
+        <button data-view="mensagens"><span>💬</span><small>Mensagens</small><i class="dot" id="msg-dot"></i></button>
+      </nav>
+      <div class="user-menu">
+        <button class="avatar sm" id="btn-user" aria-haspopup="true" aria-expanded="false"></button>
+        <div class="dropdown" id="user-dropdown" hidden>
+          <strong id="dd-name"></strong>
+          <button id="btn-edit">Editar perfil</button>
+          <button id="btn-reset">Reiniciar demo</button>
+          <button id="btn-logout">Sair</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="col-left">
+      <div class="panel profile">
+        <div class="cover"></div>
+        <div class="avatar lg" id="p-avatar"></div>
+        <h3 id="p-name"></h3>
+        <p class="muted" id="p-headline"></p>
+        <p class="bio" id="p-bio"></p>
+        <div class="p-stats">
+          <div><b id="p-matches">0</b><small>matches</small></div>
+          <div><b id="p-interviews">0</b><small>entrevistas</small></div>
+          <div><b id="p-strength">0%</b><small>perfil</small></div>
+        </div>
+        <div class="p-block"><h5>Skills</h5><div class="chips" id="p-skills"></div></div>
+        <div class="p-block"><h5>Interesses</h5><div class="chips" id="p-int"></div></div>
+        <div class="p-block"><h5>Hobbies</h5><div class="chips" id="p-hob"></div></div>
+      </div>
+    </aside>
+
+    <main class="col-main">
+      <!-- FEED -->
+      <div class="view" id="v-feed">
+        <form class="panel composer" id="composer">
+          <div class="avatar sm" id="c-avatar"></div>
+          <input name="texto" placeholder="Compartilhe uma conquista, ideia ou pergunta…" aria-label="Escrever publicação" maxlength="280">
+          <button class="btn btn-small" type="submit">Publicar</button>
+        </form>
+        <div id="feed"></div>
+      </div>
+
+      <!-- VAGAS -->
+      <div class="view" id="v-vagas" hidden>
+        <div class="panel view-head"><h2>Vagas para você</h2><p class="muted">Ordenadas pela compatibilidade calculada pela I.A.</p></div>
+        <div id="vagas"></div>
+      </div>
+
+      <!-- AGENDA -->
+      <div class="view" id="v-agenda" hidden>
+        <div class="panel view-head"><h2>Sua agenda</h2><p class="muted">Entrevistas agendadas automaticamente pela Webing.</p></div>
+        <div id="agenda"></div>
+      </div>
+
+      <!-- MENSAGENS -->
+      <div class="view" id="v-mensagens" hidden>
+        <div class="panel chat">
+          <div class="chat-head" id="chat-head"></div>
+          <div class="chat-body" id="chat-body"></div>
+          <form class="chat-form" id="chat-form">
+            <input name="msg" placeholder="Escreva uma mensagem…" aria-label="Mensagem" autocomplete="off">
+            <button class="btn btn-small" type="submit">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <aside class="col-right">
+      <div class="panel next-interview" id="r-interview"></div>
+      <div class="panel">
+        <h4>Empresas compatíveis</h4>
+        <ul class="co-list" id="r-companies"></ul>
+      </div>
+      <div class="panel event">
+        <span class="demo-tag">Evento</span>
+        <h4>Encontro Webing: Talentos & Negócios</h4>
+        <p class="muted">Debate sobre carreira, mercado e conexões reais. Florianópolis · sábado, 15h.</p>
+        <button class="btn btn-ghost btn-small btn-block" id="btn-event">Quero ir</button>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
