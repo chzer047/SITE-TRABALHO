@@ -6,8 +6,8 @@
       <path d="M14 10 H66 L170 168 H124 Z" fill="#000" stroke="#000" stroke-width="30" stroke-linejoin="round"/>
     </mask>
   </defs>
-  <path d="M92 108 C122 46 190 40 208 168" stroke="#EB8383" stroke-width="28" mask="url(#gap)"/>
-  <path d="M204 178 C212 70 262 58 292 112" stroke="#2A1D44" stroke-width="28"/>
-  <path d="M14 10 H66 L170 168 H124 Z" fill="#EB8383" stroke="#EB8383" stroke-width="16" stroke-linejoin="round"/>
-  <path d="M396 10 H344 L244 168 H290 Z" fill="#2A1D44" stroke="#2A1D44" stroke-width="16" stroke-linejoin="round"/>
+  <path d="M92 108 C122 46 190 40 208 168" stroke="#E63E88" stroke-width="28" mask="url(#gap)"/>
+  <path d="M204 178 C212 70 262 58 292 112" stroke="#384D95" stroke-width="28"/>
+  <path d="M14 10 H66 L170 168 H124 Z" fill="#E63E88" stroke="#E63E88" stroke-width="16" stroke-linejoin="round"/>
+  <path d="M396 10 H344 L244 168 H290 Z" fill="#384D95" stroke="#384D95" stroke-width="16" stroke-linejoin="round"/>
 </svg>
