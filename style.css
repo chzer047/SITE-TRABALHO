@@ -267,3 +267,5 @@ h3 { font-size: 1.2rem; margin-bottom: 8px; }
 .wordmark { font-weight: 800; letter-spacing: -.02em; text-transform: lowercase; }
 .footer-inner .logo-mark { width: 56px; }
 .nav .logo-mark { width: 64px; }
+/* Em fundo escuro a logo original fica sobre uma base branca (a logo não é alterada) */
+.footer-inner .logo-mark { box-sizing: content-box; background: #fff; padding: 8px 10px; border-radius: 12px; }
