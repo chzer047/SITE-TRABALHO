@@ -1,4 +1,4 @@
-// Webing: demo da plataforma (tudo roda no navegador, sem servidor)
+// Webbing: demo da plataforma (tudo roda no navegador, sem servidor)
 
 // ---------- Dados ----------
 const HARD = ['Excel', 'Redes sociais', 'Design gráfico', 'Programação', 'Análise de dados', 'Atendimento ao cliente',
@@ -61,7 +61,7 @@ const EXEMPLO = {
 };
 
 // ---------- Estado (salvo no navegador) ----------
-const KEY = 'webing-demo';
+const KEY = 'webbing-demo';
 let state = load();
 function load() {
   try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; }
@@ -103,7 +103,7 @@ $('#form-login').addEventListener('submit', e => {
   err.textContent = '';
   login(email);
 });
-$('#btn-demo').addEventListener('click', () => login('demo@webing.com.br'));
+$('#btn-demo').addEventListener('click', () => login('demo@webbing.com.br'));
 
 function login(email) {
   state.logged = true;
@@ -258,7 +258,7 @@ function scheduleInterview(p, c) {
     date: nextSlot(new Date(), 2, slot).toISOString(),
     slot,
     formato: online ? 'Online (Google Meet)' : 'Presencial',
-    local: online ? 'meet.google.com/webing-demo' : c.endereco,
+    local: online ? 'meet.google.com/webbing-demo' : c.endereco,
     recrutadora: c.recrutadora,
   };
 }
@@ -277,7 +277,7 @@ async function runAnalysis() {
   const c = empresa(top.id);
   state.result = { ...top, interview: scheduleInterview(p, c) };
   state.chat = [
-    { from: 'them', text: `Oi, ${firstName(p.nome)}! Aqui é ${c.recrutadora}, da ${c.nome}. A Webing nos conectou e adoramos seu perfil! 💜` },
+    { from: 'them', text: `Oi, ${firstName(p.nome)}! Aqui é ${c.recrutadora}, da ${c.nome}. A Webbing nos conectou e adoramos seu perfil! 💜` },
     { from: 'them', text: `Sua entrevista para ${c.vaga} ficou marcada para ${fmtData(new Date(state.result.interview.date))}, às ${horaDe(state.result.interview.date)} (${state.result.interview.formato}).\nSe precisar remarcar, é só usar a Agenda. Até lá!` },
   ];
   state.unread = true;
@@ -404,18 +404,18 @@ function renderCountdown() {
 function seedPosts() {
   const p = state.profile, r = state.result, c = empresa(r.id);
   return [
-    { id: 'match', autor: 'Webing I.A.', sigla: 'W', co: true, sub: 'agora', ai: true, likes: 0,
+    { id: 'match', autor: 'Webbing I.A.', sigla: 'W', co: true, sub: 'agora', ai: true, likes: 0,
       html: `<div class="post-highlight">🎉 <b>Você e a ${esc(c.nome)} deram match!</b><br>${r.pct}% de compatibilidade. Sua entrevista já está marcada para ${esc(fmtData(new Date(r.interview.date)))}, às ${horaDe(r.interview.date)}.</div>`,
       texto: `Parabéns, ${firstName(p.nome)}! Analisamos suas skills, interesses, hobbies, objetivos e personalidade e encontramos uma empresa com a sua cara.` },
     { id: 'vaga', autor: c.nome, sigla: c.sigla, co: true, sub: `${c.area} · ${c.cidade} · 2 h`, likes: 54,
       texto: `Estamos contratando! 🚀 Buscamos alguém que goste de ${c.skills.slice(0, 2).join(' e ').toLowerCase()} para crescer com a gente.`,
       html: `<div class="post-job"><b>${esc(c.vaga)}</b><br><small class="muted">${esc(c.modelo)} · ${esc(c.salario)} · ${esc(c.cidade)}</small></div>` },
     { id: 'juliana', autor: 'Juliana Ramos', sigla: 'JR', sub: 'Designer na Ateliê Norte Design · 5 h', likes: 128,
-      texto: 'Há 3 meses eu me sentia "só mais um currículo". Coloquei meus hobbies e objetivos no perfil da Webing, a I.A. me conectou com uma empresa que tem tudo a ver comigo e hoje faço parte do time! 💜' },
-    { id: 'dica', autor: 'Webing', sigla: 'W', co: true, sub: 'Dica da semana · 1 d', likes: 87,
-      texto: '💡 Dica: preencha seus hobbies, objetivos e personalidade. A I.A. da Webing usa tudo isso para encontrar empresas onde você vai se sentir bem, não só vagas que pedem o seu cargo.' },
+      texto: 'Há 3 meses eu me sentia "só mais um currículo". Coloquei meus hobbies e objetivos no perfil da Webbing, a I.A. me conectou com uma empresa que tem tudo a ver comigo e hoje faço parte do time! 💜' },
+    { id: 'dica', autor: 'Webbing', sigla: 'W', co: true, sub: 'Dica da semana · 1 d', likes: 87,
+      texto: '💡 Dica: preencha seus hobbies, objetivos e personalidade. A I.A. da Webbing usa tudo isso para encontrar empresas onde você vai se sentir bem, não só vagas que pedem o seu cargo.' },
     { id: 'rafael', autor: 'Rafael Costa', sigla: 'RC', sub: 'Estudante de ADS · 1 d', likes: 23,
-      texto: 'Alguém vai no Encontro Webing de sábado em Floripa? Bora debater carreira, negócios e tecnologia! 🗣️' },
+      texto: 'Alguém vai no Encontro Webbing de sábado em Floripa? Bora debater carreira, negócios e tecnologia! 🗣️' },
   ];
 }
 
@@ -449,7 +449,7 @@ $('#feed').addEventListener('click', e => {
     save();
     renderFeed();
   }
-  if (b.dataset.act === 'comment') toast('Comentários chegam na versão completa da Webing 😉');
+  if (b.dataset.act === 'comment') toast('Comentários chegam na versão completa da Webbing 😉');
   if (b.dataset.act === 'share') toast('Link copiado!');
 });
 
@@ -503,7 +503,7 @@ function renderAgenda() {
     <article class="panel agenda-item">
       <div class="date-box"><b>${d.getDate()}</b><small>${d.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '')}</small></div>
       <div class="agenda-info">
-        <span class="status">Confirmada · agendada pela Webing</span>
+        <span class="status">Confirmada · agendada pela Webbing</span>
         <h3>Entrevista: ${esc(c.vaga)}</h3>
         ${interviewRows(r.interview, c)}
         <div class="agenda-actions">
@@ -532,13 +532,13 @@ function downloadIcs() {
   const r = state.result, c = empresa(r.id);
   const ini = new Date(r.interview.date), fim = new Date(ini.getTime() + 45 * 60000);
   const f = d => `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}T${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}00`;
-  const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Webing//Demo//PT', 'BEGIN:VEVENT',
-    `UID:${Date.now()}@webing-demo`, `DTSTART:${f(ini)}`, `DTEND:${f(fim)}`,
-    `SUMMARY:Entrevista Webing - ${c.nome}`, `DESCRIPTION:Vaga: ${c.vaga} | Com: ${c.recrutadora}`,
+  const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Webbing//Demo//PT', 'BEGIN:VEVENT',
+    `UID:${Date.now()}@webbing-demo`, `DTSTART:${f(ini)}`, `DTEND:${f(fim)}`,
+    `SUMMARY:Entrevista Webbing - ${c.nome}`, `DESCRIPTION:Vaga: ${c.vaga} | Com: ${c.recrutadora}`,
     `LOCATION:${r.interview.local.replace(/,/g, '\\,')}`, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
-  a.download = 'entrevista-webing.ics';
+  a.download = 'entrevista-webbing.ics';
   a.click();
   URL.revokeObjectURL(a.href);
   toast('Convite baixado. Abra para salvar no seu calendário.');
@@ -584,7 +584,7 @@ $('#btn-event').addEventListener('click', () => {
   state.event = !state.event;
   save();
   renderSide();
-  toast(state.event ? 'Presença confirmada no Encontro Webing!' : 'Presença cancelada.');
+  toast(state.event ? 'Presença confirmada no Encontro Webbing!' : 'Presença cancelada.');
 });
 $('#btn-user').addEventListener('click', e => {
   e.stopPropagation();

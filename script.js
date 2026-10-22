@@ -37,6 +37,6 @@ form.addEventListener('submit', e => {
   const nome = form.nome.value.trim().split(' ')[0];
   const tipo = form.tipo.value === 'empresa' ? 'sua empresa' : 'você';
   document.getElementById('form-msg').textContent =
-    `Obrigado, ${nome}! Avisaremos ${tipo} assim que a Webing abrir. 🚀`;
+    `Obrigado, ${nome}! Avisaremos ${tipo} assim que a Webbing abrir. 🚀`;
   form.reset();
 });
