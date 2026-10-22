@@ -426,7 +426,7 @@ function renderFeed() {
   $('#feed').innerHTML = all.map(x => `
     <article class="panel post" data-id="${esc(x.id)}">
       <div class="post-head">
-        ${x.sigla === 'W' ? '<div class="avatar brand"><img src="img/logo-mark-white.svg" alt="Webbing"></div>' : `<div class="avatar ${x.co ? 'co' : ''}">${esc(x.sigla)}</div>`}
+        ${x.sigla === 'W' ? '<div class="avatar brand"><img src="img/logo-mark-white.png" alt="Webbing"></div>' : `<div class="avatar ${x.co ? 'co' : ''}">${esc(x.sigla)}</div>`}
         <div><strong>${esc(x.autor)}</strong>${x.ai ? '<span class="badge-ai">I.A.</span>' : ''}<small>${esc(x.sub)}</small></div>
       </div>
       ${x.html || ''}
